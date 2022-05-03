@@ -7,8 +7,7 @@ const logger = require('morgan');
 require('./connections');
 
 // 2. 建立路由
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 
@@ -18,7 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
 
 module.exports = app;
