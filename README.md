@@ -51,7 +51,7 @@ $ heroku create
 ## 佈署到 Heroku 遠端數據庫
 專案若要更新到 Heroku，就要執行此命令。
 ```
-$ git push heroku master 
+$ git push heroku main 
 ```
 
 ## 到 Heroku 該專案下設定環境變數
