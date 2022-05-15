@@ -41,7 +41,7 @@ const post = {
    * Doc:https://mongoosejs.com/docs/api/model.html#model_Model.deleteMany
    * @param {Object} param
    */
-  async deletePosts({ req, res }) {
+  async deletePosts(req, res) {
     await PostModel.deleteMany({});
     successResponse(res, []);
   },
@@ -50,7 +50,7 @@ const post = {
    * Doc:https://mongoosejs.com/docs/api/model.html#model_Model.findByIdAndDelete
    * @param {Object} param
    */
-  async deletePostById({ req, res }) {
+  async deletePostById(req, res) {
     try {
       const id = req.url.split('/').pop();
       const deletePostById = await PostModel.findByIdAndDelete(id);
@@ -65,21 +65,21 @@ const post = {
    * Doc:https://mongoosejs.com/docs/api/model.html#model_Model.findByIdAndUpdate
    * @param {Object} param
    */
-  async updatePostById({ req, res, body }) {
+  async updatePostById(req, res) {
     try {
-      const id = req.url.split('/').pop();
-      const data = JSON.parse(body);
-      data.content = data.content?.trim(); // 頭尾去空白
-      if (data.name) throw new Error('[修改失敗] 不可修改 name');
-      if (!data.content) throw new Error('[修改失敗] content 未填寫');
+      const { body } = req;
+      const id = req.params.id;
+      body.content = body.content?.trim(); // 頭尾去空白
+      if (body.name) throw new Error('[修改失敗] 不可修改 name');
+      if (!body.content) throw new Error('[修改失敗] content 未填寫');
       // 只開放修改 tags type image conent (name 不可改)
       const updatePostById = await PostModel.findByIdAndUpdate(
         id,
         {
-          tags: data.tags,
-          type: data.type,
-          image: data.image,
-          content: data.content,
+          tags: body.tags,
+          type: body.type,
+          image: body.image,
+          content: body.content,
         },
         {
           // 加這行才會返回更新後的資料，否則為更新前的資料。
