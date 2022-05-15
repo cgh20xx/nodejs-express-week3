@@ -1,41 +1,39 @@
 const PostModel = require('../models/PostModel');
-// const handleError = require('../service/handleError');
-// const handleSuccess = require('../service/handleSuccess');
+const {
+  successResponse,
+  errorResponse,
+} = require('../services/handleResponse');
 const post = {
   /**
    * 查詢所有資料
    * Doc:https://mongoosejs.com/docs/api/model.html#model_Model.find
    * @param {Object} param
    */
-  async getPosts({ req, res }) {
+  async getPosts(req, res) {
     const allPost = await PostModel.find();
-    // handleSuccess(res, allPost);
-    res.status(200).json({
-      status: 'success',
-      data: allPost,
-    });
+    successResponse(res, allPost);
   },
   /**
    * 新增單筆資料
    * Doc:https://mongoosejs.com/docs/api/model.html#model_Model.create
    * @param {Object} param
    */
-  async createPost({ req, res, body }) {
+  async createPost(req, res) {
     try {
-      const data = JSON.parse(body);
+      const { body } = req;
       data.content = data.content?.trim(); // 頭尾去空白
-      if (!data.content) throw new Error('[新增失敗] content 未填寫');
+      if (!body.content) throw new Error('[新增失敗] content 未填寫');
       // 只開放新增 name tags type image conent
       const newPost = await PostModel.create({
-        name: data.name,
-        tags: data.tags,
-        type: data.type,
-        image: data.image,
-        content: data.content,
+        name: body.name,
+        tags: body.tags,
+        type: body.type,
+        image: body.image,
+        content: body.content,
       });
-      handleSuccess(res, newPost);
+      successResponse(res, newPost);
     } catch (err) {
-      handleError(res, err);
+      errorResponse(res, err);
     }
   },
   /**
@@ -45,7 +43,7 @@ const post = {
    */
   async deletePosts({ req, res }) {
     await PostModel.deleteMany({});
-    handleSuccess(res, []);
+    successResponse(res, []);
   },
   /**
    * 刪除單筆資料
@@ -57,9 +55,9 @@ const post = {
       const id = req.url.split('/').pop();
       const deletePostById = await PostModel.findByIdAndDelete(id);
       if (!deletePostById) throw new Error('[刪除失敗] 沒有此 id');
-      handleSuccess(res, deletePostById);
+      successResponse(res, deletePostById);
     } catch (err) {
-      handleError(res, err);
+      errorResponse(res, err);
     }
   },
   /**
@@ -91,9 +89,9 @@ const post = {
         }
       );
       if (!updatePostById) throw new Error('[修改失敗] 沒有此 id');
-      handleSuccess(res, updatePostById);
+      successResponse(res, updatePostById);
     } catch (err) {
-      handleError(res, err);
+      errorResponse(res, err);
     }
   },
 };

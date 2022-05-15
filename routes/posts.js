@@ -3,11 +3,10 @@ const router = express.Router();
 const PostController = require('../controllers/posts');
 
 // 查詢所有資料
-router.get('/', function (req, res, next) {
-  PostController.getPosts({ req, res });
-});
+router.get('/', PostController.getPosts);
 
 // 新增單筆資料
+router.post('/', PostController.createPost);
 
 // 刪除所有資料
 
