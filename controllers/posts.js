@@ -21,7 +21,7 @@ const post = {
   async createPost(req, res) {
     try {
       const { body } = req;
-      data.content = data.content?.trim(); // 頭尾去空白
+      body.content = body.content?.trim(); // 頭尾去空白
       if (!body.content) throw new Error('[新增失敗] content 未填寫');
       // 只開放新增 name tags type image conent
       const newPost = await PostModel.create({

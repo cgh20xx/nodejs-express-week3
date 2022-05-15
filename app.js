@@ -21,4 +21,23 @@ app.use(cors());
 
 app.use('/posts', postsRouter);
 
+// 補捉未處理路由
+app.use((req, res, next) => {
+  res.status(404).json({
+    status: false,
+    message: '查無此網站路由',
+  });
+});
+
+// 補捉系統錯誤 (只在開發環境顯示詳細錯誤，生產模式顯示簡易錯誤)
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  const localError = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.statusCode || 500).json({
+    status: false,
+    message: err.message,
+    error: localError,
+  });
+});
 module.exports = app;
