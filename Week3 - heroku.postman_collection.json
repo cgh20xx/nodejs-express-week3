@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "53d7b670-d617-43d3-92e9-a3009ccf6088",
+		"_postman_id": "93de55df-d29e-47ff-91ad-40b652cc7978",
 		"name": "Week3 - heroku",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,14 +11,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://hank-express-week3.herokuapp.com/posts",
-					"protocol": "https",
+					"raw": "http://hank-express-week3.herokuapp.com/api/meta/posts",
+					"protocol": "http",
 					"host": [
 						"hank-express-week3",
 						"herokuapp",
 						"com"
 					],
 					"path": [
+						"api",
+						"meta",
 						"posts"
 					]
 				}
@@ -32,7 +34,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"小花\",\n    \"tags\": [\"公園\"],\n    \"type\": \"person\",\n    \"content\": \"今天要散步\"\n}",
+					"raw": "{\n    \"name\": \"小豬\",\n    \"tags\": [\"單車\"],\n    \"type\": \"person\",\n    \"content\": \"今天不運動\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,15 +42,17 @@
 					}
 				},
 				"url": {
-					"raw": "https://hank-express-week3.herokuapp.com/posts",
-					"protocol": "https",
+					"raw": "http://hank-express-week3.herokuapp.com/api/meta/post",
+					"protocol": "http",
 					"host": [
 						"hank-express-week3",
 						"herokuapp",
 						"com"
 					],
 					"path": [
-						"posts"
+						"api",
+						"meta",
+						"post"
 					]
 				}
 			},
@@ -60,14 +64,16 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://hank-express-week3.herokuapp.com/posts",
-					"protocol": "https",
+					"raw": "http://hank-express-week3.herokuapp.com/api/meta/posts",
+					"protocol": "http",
 					"host": [
 						"hank-express-week3",
 						"herokuapp",
 						"com"
 					],
 					"path": [
+						"api",
+						"meta",
 						"posts"
 					]
 				}
@@ -80,16 +86,18 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://hank-express-week3.herokuapp.com/posts/626672b8dca3c4510994a8d1",
-					"protocol": "https",
+					"raw": "http://hank-express-week3.herokuapp.com/api/meta/post/62664d2515412f59b18a508b",
+					"protocol": "http",
 					"host": [
 						"hank-express-week3",
 						"herokuapp",
 						"com"
 					],
 					"path": [
-						"posts",
-						"626672b8dca3c4510994a8d1"
+						"api",
+						"meta",
+						"post",
+						"62664d2515412f59b18a508b"
 					]
 				}
 			},
@@ -110,16 +118,18 @@
 					}
 				},
 				"url": {
-					"raw": "https://hank-express-week3.herokuapp.com/posts/62666d379f2ddd200843b812",
-					"protocol": "https",
+					"raw": "http://hank-express-week3.herokuapp.com/api/meta/post/6280a12da3674195105206ca",
+					"protocol": "http",
 					"host": [
 						"hank-express-week3",
 						"herokuapp",
 						"com"
 					],
 					"path": [
-						"posts",
-						"62666d379f2ddd200843b812"
+						"api",
+						"meta",
+						"post",
+						"6280a12da3674195105206ca"
 					]
 				}
 			},
